@@ -1,0 +1,13 @@
+{
+  "name": "fullstack-challenge-template",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Fullstack take-home challenge: NestJS + Prisma API and a React + Vite task board",
+  "scripts": {
+    "install:all": "npm --prefix backend install && npm --prefix frontend install",
+    "setup:backend": "npm --prefix backend install && npm --prefix backend run prisma:migrate -- --name init",
+    "backend": "npm --prefix backend run start:dev",
+    "frontend": "npm --prefix frontend run dev",
+    "test": "npm --prefix backend test"
+  }
+}
