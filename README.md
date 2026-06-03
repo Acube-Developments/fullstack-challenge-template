@@ -11,11 +11,11 @@ missing feature. Your job is to fix the bug, build the feature, and prove both w
 
 ## Tech stack
 
-| Layer    | Tech                                        |
-| -------- | ------------------------------------------- |
-| Backend  | NestJS 10, Prisma 5, SQLite, class-validator |
-| Frontend | React 18, Vite 5, TypeScript                |
-| Tests    | Jest + ts-jest (backend)                    |
+| Layer    | Tech                                                      |
+| -------- | -------------------------------------------------------- |
+| Backend  | NestJS 10, Prisma 5, SQLite, class-validator             |
+| Frontend | React 18, Vite 5, Tailwind v4, shadcn/ui, Zustand        |
+| Tests    | Jest + ts-jest (backend)                                 |
 
 ```
 fullstack-challenge-template/
@@ -25,10 +25,13 @@ fullstack-challenge-template/
 │       ├── main.ts          # global prefix, validation, CORS
 │       ├── prisma/          # PrismaService (injectable)
 │       └── tasks/           # controller, service, DTOs
-└── frontend/                # React + Vite task board
+└── frontend/                # React + Vite + Tailwind + shadcn/ui task board
     └── src/
-        ├── api.ts           # typed API client
-        └── App.tsx          # task board UI
+        ├── api.ts                # typed fetch client
+        ├── store/                # Zustand store (state + async actions)
+        ├── components/           # NewTaskForm, TaskCard + ui/ (shadcn)
+        ├── lib/utils.ts          # cn() class-merge helper
+        └── App.tsx               # task board UI
 ```
 
 ---
