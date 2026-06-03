@@ -24,7 +24,8 @@ fullstack-challenge-template/
 │   └── src/
 │       ├── main.ts          # global prefix, validation, CORS
 │       ├── prisma/          # PrismaService (injectable)
-│       └── tasks/           # controller, service, DTOs
+│       ├── tasks/           # controller, service, DTOs
+│       └── notifications/   # in-memory notifications fired when a task is created
 └── frontend/                # React + Vite + Tailwind + shadcn/ui task board
     └── src/
         ├── api.ts                # typed fetch client
@@ -78,9 +79,21 @@ Open http://localhost:5173 and you'll see the task board. The dev server proxies
 
 ### 1. Get the project running
 
-Clone this repo and bring up the backend and frontend as described above.
+Click **Use this template → Create a new repository** (top of the repo page) to make
+your own copy — please **don't fork it**. Then clone *your* copy and bring up the
+backend and frontend as described above.
 
-### 2. Fix the bug
+> ⚠️ The backend **does not start as shipped** — it crashes on boot. Getting it to
+> start is the first thing you'll do (step 2). The frontend will show errors until the
+> API is up.
+
+### 2. Make the API boot
+
+Start the backend and it dies immediately on startup. Read the error, find what's
+actually causing the crash, and fix it **properly** so the app boots cleanly — the
+right way, not a quick patch that just makes the message go away.
+
+### 3. Fix the bug
 
 **`POST /api/tasks` returns a `500` when the `description` field is missing.**
 
@@ -96,7 +109,7 @@ in both the UI and the validation layer). Identify the **root cause** and fix it
 in the NestJS service layer** — not by papering over it at the validation or HTTP layer.
 A task created without a description should be saved successfully and return `201`.
 
-### 3. Add a feature
+### 4. Add a feature
 
 Implement **`PATCH /api/tasks/:id/complete`** that marks a task as complete.
 
@@ -108,7 +121,7 @@ Implement **`PATCH /api/tasks/:id/complete`** that marks a task as complete.
 The React task board already has a **"Mark complete"** button that calls this endpoint —
 it returns `404` until you build it. When you're done, the button should work end to end.
 
-### 4. Write tests
+### 5. Write tests
 
 Add **at least 2 unit tests** for the task service using **Jest**:
 
@@ -117,14 +130,16 @@ Add **at least 2 unit tests** for the task service using **Jest**:
 
 Mock Prisma so the tests don't need a live database. Run them with `npm test` in `backend/`.
 
-### 5. Publish your work
+### 6. Publish your work
 
-Push your changes to a **public GitHub repository** and share the link.
+Push your changes to **your** GitHub repository (the one you created from this template)
+and share the link.
 
 ---
 
 ## What we're looking at
 
+- Did you fix the boot crash **at its root**, or just suppress the symptom?
 - Did you find the **actual root cause** of the 500, or just silence the symptom?
 - Is the fix in the **right layer**?
 - Does the new endpoint behave correctly for the happy path **and** edge cases (missing id)?
